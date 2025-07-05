@@ -5,7 +5,9 @@
 *:before,
 *:after {
   box-sizing: border-box;
+  font-family: Forum, Halvatica, sans-serif;
 }
+
 
 /*------------------------------------------ HEADER ------------------------------------------*/
 header {
@@ -16,27 +18,31 @@ header {
   font-size: 2rem;
   padding-bottom: 20px;
   padding-top: 20px;
+  padding-left: 10px;
 }
 
 .siteName a {
   text-decoration: none;
+  color: #000;
 }
 
 #tools{
   grid-column: 2/3;
   text-align: right;
   padding-top: 20px;
+  padding-right: 10px;
 }
 
 #tools a{
+  color: #000;
   text-decoration: none;
 }
 /*------------------------------------------ MENU ------------------------------------------*/
 nav {
   background-color: black;
   color: white;
-  font-family: playfair Display, Halvatica, sans-serif;
   justify-content: space-between;
+  margin: 10px;
 }
 nav ul {
   display: flex;
@@ -63,7 +69,7 @@ h1 {
 
 .hero-image img {
   width: 100%;
-  max-width: 800px;
+  /* max-width: 800px; */
   height: auto;
 }
 
@@ -73,14 +79,15 @@ h1 {
   top: 25%;
   left: 5%;
   background-color: rgba(128, 128, 128, 0.2);
-  color: rgb(20, 112, 112);
+  color: rgb(77, 157, 194);
+  padding: 5px;
 }
 
 .own {
-    background-color: #023047;
-    color: #8ecae6;
-    text-decoration: none;
-    padding: 5px 15px;
+  background-color: #023047;
+  color: rgb(142, 202, 230);
+  text-decoration: none;
+  padding: 5px 15px;
 }
 /* UPGRADES */
 .upgrades {
@@ -110,8 +117,35 @@ figure img {
   grid-row: 3/4;
 }
 /*------------------------------------------ FOOTER ------------------------------------------*/
+footer{
+  padding: 5px;
+}
+
 
 @media (min-width: 640px) {
+.hero-image img {
+  max-width: 1000px;
+}
+body {
+  border: #023047 solid;
+  margin: 100px;
+  background-color: white; /* fallback */
+  background-image:
+    linear-gradient(45deg, #000 25%, transparent 25%),
+    linear-gradient(-45deg, #000 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #000 75%),
+    linear-gradient(-45deg, transparent 75%, #000 75%);
+  background-size: 100px 100px; /* size of each square, adjust as you like */
+  background-position: 
+    0 0, 
+    0 50px, 
+    50px -50px, 
+    -50px 0px;
+}
+body div{
+  background-color: white;
+
+}
 	.upgrades {
   grid-column: 1/2;
 }
@@ -120,8 +154,8 @@ figure img {
 }
 
 .ownToday {
-  top: 30%;
-  left: 5%;
+  top: 40%;
+  left: 15%;
 }
 	
 }
