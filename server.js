@@ -34,10 +34,16 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory Route
 app.use("/inv", inventoryRoute)
 
+//error route
+app.get("/error/trigger-error", (req, res, next) =>{
+  next(new error(''))
+})
+
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 })
+
 
 
 /* ***********************

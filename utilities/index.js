@@ -13,7 +13,7 @@ Util.getNav = async function (req, res, next) {
         list +=
             '<a href="/inv/type/' +
             row.classification_id +
-            '"title="see our inventory of ' +
+            '" title="see our inventory of ' +
             row.classification_name +
             ' vehicles">' +
             row.classification_name +
@@ -80,8 +80,8 @@ Util.buildVehicleDetail = function(vehicle) {
     detail +=   '<div class="vehicle-image">'
     detail +=     '<img src="'+ vehicle.inv_image +'" alt="Image of '+ vehicle.inv_make +' ' + vehicle.inv_model +'" />'
     detail +=   '</div>'
-    detail +=   '<div class="Vehicle-info">'
-    detail +=     '<h2>' + vehicle.inv_year + '' + vehicle.inv_make +'' + vehicle.inv_model +'</h2>'
+    detail +=   '<div class="vehicle-info">'
+    detail +=     '<h2>' + vehicle.inv_year + ' ' + vehicle.inv_make +' ' + vehicle.inv_model +' Details</h2>'
     detail +=     '<p><strong>Price:</strong> $' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</p>'
     detail +=     '<p><strong>Milage:</strong> ' + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) + '</p>'
     detail +=     '<p><strong>Color:</strong> ' + vehicle.inv_color + '</p>'
