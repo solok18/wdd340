@@ -228,3 +228,66 @@ body div{
 }
 	
 }
+
+
+/* ************************************************************
+FORM
+** ************************************************************/
+.auth-form{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 10px;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid black;
+  grid-column: 1/4;
+  /* justify-items: center; */
+  align-items: center;
+  background-color: #023047;
+}
+.auth-form label{
+  display: block;
+  padding-top: 1rem;
+  font-size: 1rem;
+  color: white;
+}
+
+.auth-form input{
+  display: block;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: .75rem;
+  width: 100%;
+  max-width: 400px;
+  appearance: none;
+}
+.auth-form button {
+  padding: .75rem;
+  background-color: white;
+  color: #023047;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1em;
+  max-width: 200px;
+  margin-top: 1rem;
+}
+
+.auth-form button:hover {
+  background-color: #000;
+}
+.auth-form p, a{
+  color: white;
+}
+
+.flash-message {
+  background-color: red;
+  color: white;
+  padding: 1em;
+  margin: 1em auto;
+  border: 1px solid blue;
+  max-width: 400px;
+  text-align: center;
+  grid-column: 1/4;
+}
