@@ -18,6 +18,7 @@ const pool = require('./database/')
 const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
 
+
 /* ***********************
  * Middleware
  * ************************/
@@ -71,8 +72,9 @@ app.use("/account", accountRoute)
 
 //error route
 app.get("/error/trigger-error", (req, res, next) =>{
-  next(new error(''))
+  next(new Error(''))
 })
+
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {

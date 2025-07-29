@@ -7,7 +7,7 @@ const utilities = require("../utilities/")
   /*  **********************************
   *  Registration Data Validation Rules
   * ********************************* */
-  validate.registationRules = () => {
+  validate.registrationRules = () => {
     return [
       // firstname is required and must be string
       body("account_firstname")
@@ -64,7 +64,7 @@ validate.loginRules = () => {
       .trim()
       .isEmail()
       .normalizeEmail()
-      .withMessage("A valid emial is required."),
+      .withMessage("A valid email is required."),
 
     body("account_password")
       .trim()
