@@ -182,6 +182,18 @@ div .vehicle-detail{
   grid-row: 2/3;
 }
 
+.management {
+  display: flex;
+  flex-direction: column;
+}
+.management li {
+  background-color: #023047;
+  padding: 10px;
+}
+.management a {
+  color: white;
+}
+
 /* ************************************************************
 LARGER VIEW
 ** ************************************************************/
