@@ -60,7 +60,7 @@ invCont.buildClassification = async function (req, res) {
     res. status(201).redirect("/inv/")
   } else {
     req.flash("notice", "Sorry, the classification failed.")
-    res. status(501).render("./invetory/add-classification", {
+    res. status(501).render("./inventory/add-classification", {
       title: "Add New Classification",
       nav,
       errors: null
@@ -86,7 +86,7 @@ invCont.showAddInventoryForm = async function (req, res, next) {
     })
     } catch (error) {
       req.flash("notice", "Sorry, the inventory failed.")
-      res.status(500).render("./invetory/add-inventory", {
+      res.status(500).render("./inventory/add-inventory", {
         title: "Add Vehicle",
         nav,
         errors: null
@@ -144,10 +144,26 @@ invCont.addInventory = async function (req, res) {
  * ************************** */
 invCont.buildManagementView = async function (req, res, next) {
   let nav = await utilities.getNav()
+  const classificationSelect = await utilities.buildClassificationList()
   res.render("./inventory/management", {
     title: "Vehicle Management",
     nav,
+    classificationSelect,
+    error:null,
   })
+}
+
+/* ***************************
+ *  Return Inventory by Classification As JSON
+ * ************************** */
+invCont.getInventoryJSON = async (req, res, next) => {
+  const classification_id = parseInt(req.params.classification_id)
+  const invData = await invModel.getInventoryByClassificationId(classification_id)
+  if (invData[0].inv_id) {
+    return res.json(invData)
+  } else {
+    next(new Error("No data returned"))
+  }
 }
 
 module.exports = invCont

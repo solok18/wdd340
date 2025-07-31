@@ -5,6 +5,7 @@
 /* ***********************
  * Require Statements
  *************************/
+const cookieParser = require("cookie-parser")
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
@@ -45,6 +46,12 @@ app.use(function(req, res, next){
 //body-parser
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true})) // for parsing application/x-www-form-urlencoded
+
+//cookies
+app.use(cookieParser())
+
+//Jwtoken Middleware
+app.use(utilities.checkJWTToken)
 
 
 /* ***********************

@@ -194,6 +194,27 @@ div .vehicle-detail{
   color: white;
 }
 
+#classificationList {
+  background-color: #023047;
+  color: white;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 20px;
+  grid-column: 1/4;
+  max-width: 300px;
+}
+.pleaseSelect{
+  grid-column: 1/4;
+  margin-left: 10px;
+}
+
+#inventoryDisplay {
+  /* background-color: #000; */
+  border: 2px solid #000;
+}
+#inventoryDisplay:nth-child(1) {
+  border: 2px solid #000;
+}
 /* ************************************************************
 LARGER VIEW
 ** ************************************************************/
