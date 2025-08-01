@@ -258,4 +258,59 @@ invCont.updateInventory = async function (req, res, next) {
   }
 }
 
+/* ***************************
+ *  Delete confirmation view
+ * ************************** */
+invCont.showDeleteConfirmationView = async function (req, res, next) {
+  const nav = await utilities.getNav()
+  const inv_id = parseInt(req.params.inv_id)
+
+  try {
+    const data = await invModel.getInventoryById(inv_id)
+    if (!data) {
+      req.flash("notice", "Inventory item not found.")
+      return res.redirect("inv/management")
+    }
+
+    const item = data
+    const name = `${item.inv_make} ${item.inv_model}`
+
+    res.render("inventory/delete-confirm", {
+      title: `Delete ${name} | Inventory Managemet`,
+      nav,
+      message: null,
+      inv_id: item.inv_id,
+      inv_make: item.inv_make,
+      inv_model: item.inv_model,
+      inv_year: item.inv_year,
+      inv_price: item.inv_price,
+      errors: null,
+    })
+  } catch (error) {
+    return next(error)
+  }
+}
+
+/* ***************************
+ *  Process Delete item
+ * ************************** */
+invCont.deleteInventoryItem = async function (req, res, next) {
+  const inv_id = parseInt(req.body.inv_id)
+
+  try {
+    const result = await invModel.deleteInventoryItem(inv_id)
+
+    if (result.rowCount === 1) {
+      req.flash("success", "inventory item deleted successfully")
+      res.redirect("/inv/management")
+    } else {
+      req.flash("error", "Fialed to delete inventory item.")
+      res.redirect(`/inv/delete/${inv_id}`)
+    }
+  } catch (error) {
+    return next(error)
+  }
+  
+}
+
 module.exports = invCont
