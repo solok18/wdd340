@@ -194,7 +194,19 @@ div .vehicle-detail{
   color: white;
 }
 
-#classificationList {
+/* below is a commented code that i need to double check to make sure is not effecting something else */
+/* #classificationList {
+  background-color: #023047;
+  color: white;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 20px;
+  grid-column: 1/4;
+  max-width: 300px;
+} */
+
+/* this is to change the selct options in the management page */
+.selection {
   background-color: #023047;
   color: white;
   padding: 5px;
@@ -442,5 +454,70 @@ FORM inventory
   color: white;
 }
 #addInventory p, #addInventory a{
+  color: white;
+}
+
+/* ************************************************************
+FORM inventory update
+** ************************************************************/
+#updateInventory{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 10px;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid black;
+  grid-column: 1/4;
+  /* justify-items: center; */
+  align-items: center;
+  background-color: #023047;
+  max-width: 600px;
+}
+#updateInventory label{
+  display: block;
+  padding-top: 1rem;
+  font-size: 1rem;
+  color: white;
+}
+
+#updateInventory input, #updateInventory select{
+  display: block;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: .75rem;
+  width: 100%;
+  max-width: 400px;
+  appearance: none;
+}
+
+#updateInventory textarea{
+ display: block;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: .75rem;
+  width: 100%;
+  max-width: 400px;
+  height: 100px;
+  appearance: none;
+}
+
+#updateInventory button {
+  padding: .75rem;
+  background-color: white;
+  color: #023047;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1em;
+  max-width: 200px;
+  margin-top: 1rem;
+}
+
+#updateInventory button:hover {
+  background-color: #000;
+  color: white;
+}
+#updateInventory p, #addInventory a{
   color: white;
 }

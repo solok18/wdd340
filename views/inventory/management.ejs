@@ -16,7 +16,10 @@
 <h2 class="pleaseSelect">Manage Inventory</h2>
 <p class="pleaseSelect">Please select a Classification from the list. </p>
 
-<%- classificationSelect %>
+
+<select class="selection" name="classification_id" id="classification_id" required>
+    <%- classificationSelect %>    
+</select>
 
 <table id="inventoryDisplay"></table>
 <noscript>JavaScript must be enable to use this page.</noscript>
