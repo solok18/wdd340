@@ -22,7 +22,11 @@ const bodyParser = require("body-parser")
 
 /* ***********************
  * Middleware
- * ************************/
+* ************************/
+// cookies
+app.use(cookieParser())
+
+// session
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
     createTableIfMissing: true,
@@ -47,8 +51,6 @@ app.use(function(req, res, next){
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true})) // for parsing application/x-www-form-urlencoded
 
-//cookies
-app.use(cookieParser())
 
 //Jwtoken Middleware
 app.use(utilities.checkJWTToken)

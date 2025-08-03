@@ -29,4 +29,9 @@ router.post(
 //account route
 router.get("/", utilities.checkLogin ,utilities.handleErrors(accountController.buildAccount))
 
+// update account
+router.get("/update/:accountId", utilities.handleErrors(accountController.buildUpdateAccountView))
+
+router.get("/update", regValidate.updateAccountRules(), regValidate.checkRegData, utilities.handleErrors(accountController.updateAccount))
+
 module.exports = router;

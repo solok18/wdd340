@@ -123,13 +123,107 @@ async function accountLogin(req, res) {
  *  Process login request
  * ************************************ */
 async function buildAccount(req, res, next) {
- const nav = await utilities.getNav()
- res.render("account/account", {
-  title: "Account Management",
-  nav,
-  errors: null,
-  message: null,
- }) 
+  const nav = await utilities.getNav()
+  const account_id = res.locals.accountData.account_id
+
+  try{
+    const account = await accountModel.getAccountById(account_id)
+    
+    res.render("account/account", {
+      title: "Account Management",
+      nav,
+      account,
+      errors: null,
+      message: null,
+    })
+  } catch (error) {
+    req.flash("notice", "There was a problem loading your account.")
+    res.redirect("/account/login")
+  }
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccount,}
+/* ****************************************
+ *  Deliver Update Account View
+ * ************************************ */
+async function buildUpdateAccountView(req, res, next) {
+  const nav = await utilities.getNav()
+  const accountId = req.params.accountId
+
+  try {
+    // Fetch the current account data by id from the model
+    const accountData = await accountModel.getAccountById(accountId)
+
+    if (!accountData) {
+      req.flash("notice", "Account not found")
+      return res.redirect("/account")
+    }
+
+    res.render("account/update-account", {
+      title: "Update Account",
+      nav,
+      accountData,
+      errors: null,
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+/* ****************************************
+ *  Process account update
+ * ************************************ */
+async function updateAccount (req, res, next) {
+  let nav = await utilities.getNav()
+  const { account_id, account_firstname, account_lastname, account_email } = req.body
+
+  try {
+    const updateResult = await accountModel.updateAccount(
+      account_id,
+      account_firstname,
+      account_lastname,
+      account_email
+    )
+
+    if (updateResult) {
+      const accountData = await accountModel.getAccountById(account_id)
+      delete accountData.account_password
+      const token = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' })
+
+      res.cookie("jwt", token, {
+        httpOnly: true,
+        secure: false,
+        maxAge: 3600000
+      })
+
+      req.flash("notice", "Account information updated successfully.")
+      return res.redirect("/account/")
+    } else {
+      return res.render("account/update-account", {
+        title: "Update Account",
+        nav,
+        errors: ["Update failed. Please try again."],
+        locals: {
+          account_id,
+          account_firstname,
+          account_lastname,
+          account_email
+        }
+      })
+    }
+  } catch (error) {
+    console.error("Update Error:", error)
+    return res.render("account/update-account", {
+      title: "Update Account",
+      nav,
+      errors: ["An error occurred. Please try again."],
+      locals: {
+        account_id,
+        account_firstname,
+        account_lastname,
+        account_email
+      }
+    })
+  }
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccount, buildUpdateAccountView, updateAccount}

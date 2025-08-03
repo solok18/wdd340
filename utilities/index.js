@@ -131,13 +131,19 @@ Util.checkJWTToken = (req, res, next) => {
     if (err) {
      req.flash("Please log in")
      res.clearCookie("jwt")
+     res.locals.accountData = {}
      return res.redirect("/account/login")
     }
     res.locals.accountData = accountData
-    res.locals.loggedin = 1
+    // res.locals.loggedin = 1
+    res.locals.loggedin = true
+    res.locals.firstname = accountData.account_firstname
+    res.locals.accountId = accountData.account_id
+    res.locals.accountType = accountData.account_type
     next()
    })
  } else {
+  res.locals.accountData = {}
   next()
  }
 }
@@ -145,11 +151,34 @@ Util.checkJWTToken = (req, res, next) => {
 /* ****************************************
  *  Check Login
  * ************************************ */
- Util.checkLogin = (req, res, next) => {
+Util.checkLogin = (req, res, next) => {
   if (res.locals.loggedin) {
     next()
   } else {
     req.flash("notice", "Please log in.")
     return res.redirect("/account/login")
   }
- }
+}
+
+/* ****************************************
+ *  Check authorization by account
+ * ************************************ */
+Util.checkAccountType = (req, res, next) => {
+  const accountType = res.locals.accountType
+
+  if (accountType === "admin" || accountType === "employee") {
+    return next()
+  } else {
+    req.flash("notice", "you do not have permission to access this page.")
+    return res.redirect("/account/login")
+  }
+  // if (res.locals.accountData && res.local.accountData.account_type === 'client') {
+  //   console.log("Access denied to client user")
+  //   return res.status(403).render("errors/error", {
+  //     title: "Forbidden",
+  //     message: "You are not authorized to acces this page.",
+  //     nav: res.locals.nav,
+  //   })
+  // }
+  // next()
+}

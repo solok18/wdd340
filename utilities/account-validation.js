@@ -112,4 +112,26 @@ validate.checkLoginData = async (req, res, next) => {
   }
   next()
 }
+
+/* ******************************
+ * Validate update account data
+ * ***************************** */
+validate.updateAccountRules = () => {
+  return [
+     body("account_fristname")
+      .trim()
+      .isLength({min: 1})
+      .withMessage("Please provide first name."),
+     body("account_lastname")
+      .trim()
+      .isLength({min: 1})
+      .withMessage("Please provide last name."),
+     body("account_email")
+      .trim()
+      .isEmail()
+      .normalizeEmail()
+      .withMessage("A valid email is required."),
+  ]
+}
+
 module.exports = validate  

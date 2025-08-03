@@ -1,0 +1,41 @@
+<%# Content Heading %>
+ <% if (title) { %>
+<h1><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<%# flash message %>
+<% if (message) {%>
+<div class="flash-message">
+    <p><%= message %></p>
+</div><% } %>
+
+
+<%# Error Display %>
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<% if (accountData) { %>
+<form id="update-account" action="/account/update" method="post">
+    <label for="account_firstname">First Name:</label>
+    <input type="text" id="account_firstname" name="account_firstname" required value="<%= accountData.account_firstname %>">
+
+    <label for="account_lastname">Last Name:</label>
+    <input type="text" id="account_lastname" name="account_lastname" required value="<%= accountData.account_lastname %>">
+
+    <label for="account_email">Email:</label>
+    <input type="email" id="account_email" name="account_email" required value="<%= accountData.account_email %>">
+
+    <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+
+    <button type="submit">Update Information</button>
+</form>
+<% } else { %>
+    <p>Account information could not be loaded</p>
+<% } %>

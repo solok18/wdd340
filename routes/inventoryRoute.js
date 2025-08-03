@@ -17,30 +17,30 @@ router.get("/detail/:inv_id", utilities.handleErrors(invController.buildDetailVi
 
 // Route for adding classification
 
-router.get("/add-classification", utilities.handleErrors(invController.showAddClassificationForm))
+router.get("/add-classification", utilities.checkAccountType, utilities.handleErrors(invController.showAddClassificationForm))
 
-router.post("/add-classification", utilities.handleErrors(invController.buildClassification))
+router.post("/add-classification", utilities.checkAccountType, utilities.handleErrors(invController.buildClassification))
 
 // Route for adding inventory
 
-router.get("/add-inventory", utilities.handleErrors(invController.showAddInventoryForm))
+router.get("/add-inventory", utilities.checkAccountType, utilities.handleErrors(invController.showAddInventoryForm))
 
-router.post("/add-inventory", utilities.handleErrors(invController.addInventory))
+router.post("/add-inventory", utilities.checkAccountType, utilities.handleErrors(invController.addInventory))
 
 //  Route for inventory management
-router.get("/management", utilities.handleErrors(invController.buildManagementView))
+router.get("/management", utilities.checkAccountType, utilities.handleErrors(invController.buildManagementView))
 
 //  Route for get inventory Json by classification
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
 // Route to build the edit inventory view
-router.get("/edit/:inv_id", invController.editInventoryView, utilities.handleErrors(invController.editInventoryView))
+router.get("/edit/:inv_id", utilities.checkAccountType, invController.editInventoryView, utilities.handleErrors(invController.editInventoryView))
 
-router.post("/update/", newInventoryRules(), checkUpdateData, utilities.handleErrors(invController.updateInventory))
+router.post("/update/", utilities.checkAccountType, newInventoryRules(), checkUpdateData, utilities.handleErrors(invController.updateInventory))
 
 // Route to delete
-router.get("/delete/:inv_id", utilities.handleErrors(invController.showDeleteConfirmationView))
+router.get("/delete/:inv_id", utilities.checkAccountType, utilities.handleErrors(invController.showDeleteConfirmationView))
 
-router.post("/delete", utilities.handleErrors(invController.deleteInventoryItem))
+router.post("/delete", utilities.checkAccountType, utilities.handleErrors(invController.deleteInventoryItem))
 
 module.exports = router;
