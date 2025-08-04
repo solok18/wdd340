@@ -255,4 +255,17 @@ async function updatePassword(req, res) {
   }
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccount, buildUpdateAccountView, updateAccount, updatePassword}
+/* ****************************************
+ *  Process logout request
+ * ************************************ */
+async function logout(req, res, mext) {
+  try {
+    res.clearCookie("jwt")
+    req.flash("notice", "You have successfully logged out.")
+    res.redirect("/")
+  } catch (error) {
+    next(error)
+  }
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccount, buildUpdateAccountView, updateAccount, updatePassword, logout}
