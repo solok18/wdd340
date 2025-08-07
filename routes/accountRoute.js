@@ -40,4 +40,5 @@ router.post("/update-password", regValidate.updatePasswordRules(), regValidate.c
 // logout
 router.get("/logout", utilities.handleErrors(accountController.logout))
 
+
 module.exports = router;

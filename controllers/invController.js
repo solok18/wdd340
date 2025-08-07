@@ -3,6 +3,10 @@ const utilities = require("../utilities/")
 
 const invCont = {}
 
+// additional enhancement
+const favoritesModel = require("../models/favorites-model")
+
+
 /* ***************************
  *  Build inventory by classification view
  * ************************** */
@@ -29,10 +33,25 @@ invCont.buildDetailView = async function(req, res, next) {
   const detail = utilities.buildVehicleDetail(data)
   let nav = await utilities.getNav()
   const title = `${data.inv_make} ${data.inv_model}`
+
+
+// This part is for the favotire
+  let is_favorite = false
+  if (res.locals.accountData) {
+    const account_id = res.locals.accountData.account_id
+    is_favorite = await favoritesModel.isFavorite(account_id, inv_id)
+  }
+
   res.render("./inventory/detail", {
     title, 
     nav,
     detail,
+    // part of the favorite
+    data,
+    vehicle: {
+      inv_id: data.inv_id,
+      is_favorite,
+    }
   })
 }
 

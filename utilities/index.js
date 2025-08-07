@@ -23,6 +23,8 @@ Util.getNav = async function (req, res, next) {
             "</a>"
         list += "</li>"     
     })
+
+    list += '<li><a href="/favorites" title="View your saved vehicles">Favorites</a></li>'
     list += "</ul>"
     return list
 }
@@ -152,6 +154,7 @@ Util.checkJWTToken = (req, res, next) => {
  *  Check Login
  * ************************************ */
 Util.checkLogin = (req, res, next) => {
+  console.log("checkLogin: loggedin =", res.locals.loggedin)
   if (res.locals.loggedin) {
     next()
   } else {

@@ -1,0 +1,31 @@
+<!-- Content Heading -->
+ <% if (title) { %>
+<h1><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+
+<% if (favorites.length === 0) { %>
+  <p>You haven't added any favorites yet.</p>
+<% } else { %>
+  <ul>
+    <% favorites.forEach(fav => { %>
+      <li>
+        <img src="<%= fav.inv_thumbnail %>" alt="<%= fav.inv_make %> <%= fav.inv_model %> thumbnail" />
+        <h2><%= fav.inv_make %> <%= fav.inv_model %> (<%= fav.inv_year %>)</h2>
+        <p><%= fav.inv_description %></p>
+        <p>Price: $<%= fav.inv_price %></p>
+        <p>Miles: <%= fav.inv_miles %></p>
+        <p>Color: <%= fav.inv_color %></p>
+        <a href="/inv/detail/<%= fav.inv_id %>">View Details</a>
+
+
+        <form action="/favorites/remove" method="post" style="display:inline;" class="remove-favorite">
+          <input type="hidden" name="inv_id" value="<%= fav.inv_id %>" />
+          <button type="submit">Remove from Favorites</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>

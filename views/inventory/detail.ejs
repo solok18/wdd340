@@ -7,3 +7,12 @@
 
 <%# vehicle dteails %>
 <%- detail %>
+
+<% if (locals.loggedin) { %>
+    <form action="/favorites/add" method="post" class="favorite-form">
+        <input type="hidden" name="inv_id" id="inv_id" value="<%= data.inv_id %>">
+        <button type="submit">Save to Favorites</button>
+    </form>
+<% } else { %>
+    <p><a href="/account/login">Log in</a> to save this vehicle to your favorites.</p>
+<% } %>

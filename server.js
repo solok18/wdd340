@@ -18,6 +18,7 @@ const session = require("express-session")
 const pool = require('./database/')
 const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
+const favoritesRoute = require("./routes/favoritesRoute")
 
 
 /* ***********************
@@ -78,6 +79,9 @@ app.use("/inv", inventoryRoute)
 
 // Login route
 app.use("/account", accountRoute)
+
+// Favorite route
+app.use("/favorites", favoritesRoute)
 
 //error route
 app.get("/error/trigger-error", (req, res, next) =>{
