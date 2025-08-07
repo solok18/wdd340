@@ -228,54 +228,6 @@ div .vehicle-detail{
 #inventoryDisplay:nth-child(1) {
   border: 2px solid #000;
 }
-/* ************************************************************
-LARGER VIEW
-** ************************************************************/
-@media (min-width: 640px) {
-.hero-image img {
-  max-width: 1000px;
-}
-body {
-  border: #023047 solid;
-  margin: 100px;
-  background-color: white; /* fallback */
-  background-image:
-    linear-gradient(45deg, #000 25%, transparent 25%),
-    linear-gradient(-45deg, #000 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #000 75%),
-    linear-gradient(-45deg, transparent 75%, #000 75%);
-  background-size: 100px 100px; /* size of each square, adjust as you like */
-  background-position: 
-    0 0, 
-    0 50px, 
-    50px -50px, 
-    -50px 0px;
-}
-body div{
-  background-color: white;
-
-}
-	.upgrades {
-  grid-column: 1/2;
-}
-.reviews{
-  grid-column: 2/3;
-}
-
-.ownToday {
-  top: 40%;
-  left: 15%;
-}
-.vehicle-image {
-  grid-column: 1/2;
-}
-.vehicle-info{
-  grid-column: 2/3;
-  grid-row: 1/2;
-}
-	
-}
-
 
 /* ************************************************************
 FORM
@@ -815,3 +767,78 @@ Remove Favorite Button
   color: white;
 }
 
+/* ************************************************************
+Loggin Favorite Button
+** ************************************************************/
+.login-to-save a{
+  padding: .75rem;
+  background-color: #023047;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1em;
+  max-width: 200px;
+  margin: 2rem;
+  
+}
+
+.login-to-save button:hover {
+  background-color: #000;
+  color: white;
+}
+.login-to-save{
+grid-column: 2/3;
+display: flex;
+flex: wrap;
+}
+
+
+
+/* ************************************************************
+LARGER VIEW
+** ************************************************************/
+@media (min-width: 640px) {
+.hero-image img {
+  max-width: 1000px;
+}
+body {
+  border: #023047 solid;
+  margin: 100px;
+  background-color: white; /* fallback */
+  background-image:
+    linear-gradient(45deg, #000 25%, transparent 25%),
+    linear-gradient(-45deg, #000 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #000 75%),
+    linear-gradient(-45deg, transparent 75%, #000 75%);
+  background-size: 100px 100px; /* size of each square, adjust as you like */
+  background-position: 
+    0 0, 
+    0 50px, 
+    50px -50px, 
+    -50px 0px;
+}
+body div{
+  background-color: white;
+
+}
+	.upgrades {
+  grid-column: 1/2;
+}
+.reviews{
+  grid-column: 2/3;
+}
+
+.ownToday {
+  top: 40%;
+  left: 15%;
+}
+.vehicle-image {
+  grid-column: 1/2;
+}
+.vehicle-info{
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+	
+}
