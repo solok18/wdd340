@@ -5,6 +5,11 @@ const utilities = require("../utilities")
 const accountController = require("../controllers/accountController")
 const regValidate = require('../utilities/account-validation')
 
+router.use((req, res, next) => {
+  console.log(`ACCOUNT ROUTE HIT: ${req.method} ${req.originalUrl}`);
+  next();
+});
+
 //Route to build the login
 router.get("/login", utilities.handleErrors(accountController.buildLogin))
 

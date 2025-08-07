@@ -152,6 +152,7 @@ async function buildUpdateAccountView(req, res, next) {
   try {
     // Fetch the current account data by id from the model
     const accountData = await accountModel.getAccountById(accountId)
+    console.log(`Rendering update view for accountId: ${req.params.accountId}`);
 
     if (!accountData) {
       req.flash("notice", "Account not found")
